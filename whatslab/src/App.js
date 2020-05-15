@@ -6,8 +6,9 @@ import styled from "styled-components";
 const MainLayout = styled.div`
   display: grid;
   margin: auto;
+  margin-top: 20px;
   width: 50vw;
-  height: 100vh;
+  height: 90vh;
   grid-template-columns: 20% 60% 20%;
   grid-template-rows: 1fr 25px;
   grid-template-areas:
