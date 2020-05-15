@@ -9,7 +9,7 @@ const MainLayout = styled.div`
   margin-top: 20px;
   width: 50vw;
   height: 90vh;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 20% 1fr 10%;
   grid-template-rows: 1fr 25px;
   grid-template-areas:
   "lista lista lista"
