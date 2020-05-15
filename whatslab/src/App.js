@@ -41,12 +41,7 @@ const BotaoEnviar = styled.button`
 
 class App extends React.Component {
   state = {
-    mensagens: [
-      {
-        nomeUsuario: "renan",
-        valorMensagem: "bla bli blu",
-      }
-    ],
+    mensagens: [],
     valorInputUsuario: "",
     valorInputMensagem: "",
   };
@@ -57,7 +52,7 @@ class App extends React.Component {
       valorMensagem: this.state.valorInputMensagem,
     };
 
-    const novoMensagens = [...this.state.mensagens, novoMensagens];
+    const novoMensagens = [...this.state.mensagens, novaMensagem];
       
     this.setState({
       mensagens: novoMensagens,
@@ -66,15 +61,29 @@ class App extends React.Component {
     });
   };
 
+  onChangeInputUsuario = (event) => {
+    this.setState({ valorInputUsuario: event.target.value });
+  };
+
+  onChangeInputMensagem = (event) => {
+    this.setState({ valorInputMensagem: event.target.value });
+  };
+
   render(){
+
+    const listaMensgens = this.state.mensagens.map(mensagem => {
+      return <Mensagem
+                nomeUsuario={mensagem.nomeUsuario}
+                valorMensagem={mensagem.valorMensagem}
+              />
+    })
+
     return (
       <MainLayout>
-      <ListaMensagens>
-
-      </ListaMensagens>
-      <InputUser placeholder='Usuário'/>
-      <InputMsg placeholder='Mensagem'/>
-      <BotaoEnviar>Enviar</BotaoEnviar>
+      <ListaMensagens>{listaMensgens}</ListaMensagens>
+      <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
+      <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
+      <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
       </MainLayout>
     );
   }
