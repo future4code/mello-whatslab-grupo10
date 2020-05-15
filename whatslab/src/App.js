@@ -45,6 +45,7 @@ class App extends React.Component {
 
   enviarMensagem = () => {
     const novaMensagem = {
+      key: Date.now(),
       nomeUsuario: this.state.valorInputUsuario,
       valorMensagem: this.state.valorInputMensagem,
     };
@@ -66,10 +67,17 @@ class App extends React.Component {
     this.setState({ valorInputMensagem: event.target.value });
   };
 
+  onKeyPressInputMensagem = (event) => {
+    if (event.key === "Enter" || (event.keyCode || event.which) === 13){
+      this.enviarMensagem();
+    }
+  }
+
   render(){
 
     const listaMensgens = this.state.mensagens.map(mensagem => {
       return <Mensagem
+                key={mensagem.key}
                 nomeUsuario={mensagem.nomeUsuario}
                 valorMensagem={mensagem.valorMensagem}
               />
@@ -79,7 +87,7 @@ class App extends React.Component {
       <MainLayout>
       <ListaMensagens>{listaMensgens}</ListaMensagens>
       <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
-      <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
+      <InputMsg placeholder='Mensagem' onKeyPress={this.onKeyPressInputMensagem} value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
       <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
       </MainLayout>
     );
