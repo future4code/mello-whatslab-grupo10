@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
+import Mensagem from "./components/Mensagem/Mensagem";
 
 const MainLayout = styled.div`
   display: grid;
@@ -38,15 +39,45 @@ const BotaoEnviar = styled.button`
   grid-area: enviar;
 `
 
-function App() {
-  return (
-    <MainLayout>
-    <ListaMensagens></ListaMensagens>
-    <InputUser placeholder='Usuário'/>
-    <InputMsg placeholder='Mensagem'/>
-    <BotaoEnviar>Enviar</BotaoEnviar>
-    </MainLayout>
-  );
+class App extends React.Component {
+  state = {
+    mensagens: [
+      {
+        nomeUsuario: "renan",
+        valorMensagem: "bla bli blu",
+      }
+    ],
+    valorInputUsuario: "",
+    valorInputMensagem: "",
+  };
+
+  enviarMensagem = () => {
+    const novaMensagem = {
+      nomeUsuario: this.state.valorInputUsuario,
+      valorMensagem: this.state.valorInputMensagem,
+    };
+
+    const novoMensagens = [...this.state.mensagens, novoMensagens];
+      
+    this.setState({
+      mensagens: novoMensagens,
+      valorInputUsuario: "",
+      valorInputMensagem: "",
+    });
+  };
+
+  render(){
+    return (
+      <MainLayout>
+      <ListaMensagens>
+
+      </ListaMensagens>
+      <InputUser placeholder='Usuário'/>
+      <InputMsg placeholder='Mensagem'/>
+      <BotaoEnviar>Enviar</BotaoEnviar>
+      </MainLayout>
+    );
+  }
 }
 
 export default App;

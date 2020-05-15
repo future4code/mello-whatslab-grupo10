@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 class Mensagem extends React.Component{
     render(){
-        return <div>
-            </div>
+    return <p><b>{this.props.nomeUsuario}</b>:{this.props.valorMensagem}</p>
     }
 }
 
