@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
+import Mensagem from "./components/Mensagem/Mensagem";
 
 const MainLayout = styled.div`
   display: grid;
@@ -38,15 +39,54 @@ const BotaoEnviar = styled.button`
   grid-area: enviar;
 `
 
-function App() {
-  return (
-    <MainLayout>
-    <ListaMensagens></ListaMensagens>
-    <InputUser placeholder='Usuário'/>
-    <InputMsg placeholder='Mensagem'/>
-    <BotaoEnviar>Enviar</BotaoEnviar>
-    </MainLayout>
-  );
+class App extends React.Component {
+  state = {
+    mensagens: [],
+    valorInputUsuario: "",
+    valorInputMensagem: "",
+  };
+
+  enviarMensagem = () => {
+    const novaMensagem = {
+      nomeUsuario: this.state.valorInputUsuario,
+      valorMensagem: this.state.valorInputMensagem,
+    };
+
+    const novoMensagens = [...this.state.mensagens, novaMensagem];
+      
+    this.setState({
+      mensagens: novoMensagens,
+      valorInputUsuario: "",
+      valorInputMensagem: "",
+    });
+  };
+
+  onChangeInputUsuario = (event) => {
+    this.setState({ valorInputUsuario: event.target.value });
+  };
+
+  onChangeInputMensagem = (event) => {
+    this.setState({ valorInputMensagem: event.target.value });
+  };
+
+  render(){
+
+    const listaMensgens = this.state.mensagens.map(mensagem => {
+      return <Mensagem
+                nomeUsuario={mensagem.nomeUsuario}
+                valorMensagem={mensagem.valorMensagem}
+              />
+    })
+
+    return (
+      <MainLayout>
+      <ListaMensagens>{listaMensgens}</ListaMensagens>
+      <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
+      <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
+      <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
+      </MainLayout>
+    );
+  }
 }
 
 export default App;
