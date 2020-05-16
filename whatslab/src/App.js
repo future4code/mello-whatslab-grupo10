@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 import styled from "styled-components";
+import background from './img/space.jpg';
 import Mensagem from "./components/Mensagem/Mensagem";
 
 const MainLayout = styled.div`
   display: grid;
   margin: auto;
   border: 1px solid black;
+  background-image: url(${background});
+  background-size: no-repeat;
   background-color: #e5ddd5;
-  width: 40vw;
+  width: 45vw;
   height: 90vh;
   padding-bottom: 5px;
   grid-column-gap: 10px;
@@ -22,6 +25,9 @@ const MainLayout = styled.div`
 const ListaMensagens = styled.div`
   padding: 20px;
   grid-area: lista;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `
 
 const InputUser = styled.input`
@@ -30,6 +36,9 @@ const InputUser = styled.input`
   border-style: none;
   padding-left: 5px;
   grid-area: user;
+  &:focus {
+      outline: none;
+  }
 `
 
 const InputMsg = styled.input`
@@ -37,6 +46,9 @@ const InputMsg = styled.input`
   border-style: none;
   padding-left: 5px;
   grid-area: msg;
+  &:focus {
+      outline: none;
+  }
 `
 
 const BotaoEnviar = styled.button`
@@ -45,6 +57,9 @@ const BotaoEnviar = styled.button`
   border-style: none;
   font-weight: bold;
   grid-area: enviar;
+  &:focus {
+      outline: none;
+  }
 `
 
 class App extends React.Component {
@@ -104,7 +119,7 @@ class App extends React.Component {
       <MainLayout>
         <ListaMensagens>{listaMensgens}</ListaMensagens>
         <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
-        <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
+        <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem} onKeyPress={this.onKeyPressInputMensagem}/>
         <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
       </MainLayout>
     );
