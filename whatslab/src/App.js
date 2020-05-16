@@ -76,9 +76,9 @@ class App extends React.Component {
       id: data.getTime(),
       nomeUsuario: this.state.valorInputUsuario,
       valorMensagem: this.state.valorInputMensagem,
-      horario: `${data.getHours()}:${data.getMinutes()}`,
+      horario: `${this.formatarHorario(data)}`,
     };
-    
+
     const novoMensagens = [...this.state.mensagens, novaMensagem];
 
     this.setState({
@@ -92,6 +92,11 @@ class App extends React.Component {
       const novoMensagens = this.state.mensagens.filter(mensagem => mensagem.id !== id)
       this.setState({ mensagens: novoMensagens })
     }
+  }
+
+  formatarHorario = (data) => {
+    const minutos = data.getMinutes();
+    return `${data.getHours()}:${(minutos < 10) ? '0' + minutos : minutos}`
   }
 
   onChangeInputUsuario = (event) => {
