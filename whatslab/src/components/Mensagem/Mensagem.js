@@ -28,42 +28,28 @@ const NomeUsuario = styled.p`
 const MensagemUsuario = styled.p`
     word-wrap: break-word;
 `
-const HoraMensagem = styled.div`
+const HoraMensagem = styled.p`
     font-size: 10px;
     margin-top: 3px;
-    display: flex;
-    justify-content: flex-end;
+    text-align: right;
 `
 
 
 class Mensagem extends React.Component{
     render() {
-        function pad(numeroRelogio) {
-            if (numeroRelogio < 10) {
-                return "0" + numeroRelogio
-            } else {
-                return numeroRelogio
-            }
-        }
-
-        let data = new Date()
-        let horaMensagem = [data.getHours(), data.getMinutes()].map(pad).join(":")
-
         if (this.props.nomeUsuario === "eu") {
             return <MensagemDireita onDoubleClick={this.props.funcaoDeletar}>
-                <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
-                <HoraMensagem>{horaMensagem}</HoraMensagem>
-            </MensagemDireita>
+                        <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
+                        <HoraMensagem>{this.props.horario}</HoraMensagem>
+                   </MensagemDireita>
         } else {
             return <MensagemEsquerda onDoubleClick={this.props.funcaoDeletar}>
-                <NomeUsuario>{this.props.nomeUsuario}</NomeUsuario>
-                <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
-                <HoraMensagem>{horaMensagem}</HoraMensagem>
-            </MensagemEsquerda>
+                        <NomeUsuario>{this.props.nomeUsuario}</NomeUsuario>
+                        <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
+                        <HoraMensagem>{this.props.horario}</HoraMensagem>
+                   </MensagemEsquerda>
         }            
     }
-}    
-
+}
 
 export default Mensagem
-

@@ -70,24 +70,27 @@ class App extends React.Component {
   };
 
   enviarMensagem = () => {
+    const data = new Date();
+
     const novaMensagem = {
-      key: Date.now(),
+      id: data.getTime(),
       nomeUsuario: this.state.valorInputUsuario,
       valorMensagem: this.state.valorInputMensagem,
+      horario: `${data.getHours()}:${data.getMinutes()}`,
     };
-
+    
     const novoMensagens = [...this.state.mensagens, novaMensagem];
-      
+
     this.setState({
       mensagens: novoMensagens,
       valorInputMensagem: "",
     });
   };
 
-  deletarMensagem = (key) => {
-    if(window.confirm('Deseja mesmo apagar a mensagem ?')){
-      const novoMensagens = this.state.mensagens.filter( mensagem => mensagem.key !== key )
-      this.setState({mensagens: novoMensagens})
+  deletarMensagem = (id) => {
+    if (window.confirm('Deseja mesmo apagar a mensagem ?')) {
+      const novoMensagens = this.state.mensagens.filter(mensagem => mensagem.id !== id)
+      this.setState({ mensagens: novoMensagens })
     }
   }
 
@@ -100,30 +103,30 @@ class App extends React.Component {
   };
 
   onKeyPressInputMensagem = (event) => {
-    if (event.key === "Enter" || (event.keyCode || event.which) === 13){
+    if (event.key === "Enter" || (event.which === 13)) {
       this.enviarMensagem();
     }
   };
 
-  render(){
-
-    const listaMensgens = this.state.mensagens.map(mensagem => {
+  render() {
+    const listaMensagens = this.state.mensagens.map(mensagem => {
       return <Mensagem
-                key={mensagem.key}
+                key={mensagem.id}
                 nomeUsuario={mensagem.nomeUsuario}
                 valorMensagem={mensagem.valorMensagem}
-                funcaoDeletar={()=>{this.deletarMensagem(mensagem.key)}}
+                funcaoDeletar={() => { this.deletarMensagem(mensagem.id) }}
+                horario={mensagem.horario}
               />
-    })
+    });
 
     return (
       <MainLayout>
-        <ListaMensagens>{listaMensgens}</ListaMensagens>
-        <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
-        <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem} onKeyPress={this.onKeyPressInputMensagem}/>
+        <ListaMensagens>{listaMensagens}</ListaMensagens>
+        <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario} />
+        <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem} onKeyPress={this.onKeyPressInputMensagem} />
         <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
       </MainLayout>
-    );
+    )
   }
 }
 
