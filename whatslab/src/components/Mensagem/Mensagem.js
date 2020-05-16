@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import "./Mensagem.css";
 
-
+const Mensagem
 
 class Mensagem extends React.Component{
     render(){

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
 import Mensagem from "./components/Mensagem/Mensagem";
@@ -7,35 +6,44 @@ import Mensagem from "./components/Mensagem/Mensagem";
 const MainLayout = styled.div`
   display: grid;
   margin: auto;
-  margin-top: 20px;
-  width: 50vw;
+  border: 1px solid black;
+  background-color: #e5ddd5;
+  width: 40vw;
   height: 90vh;
-  grid-template-columns: 20% 1fr 10%;
-  grid-template-rows: 1fr 25px;
+  padding-bottom: 5px;
+  grid-column-gap: 10px;
+  grid-template-columns: 20% 1fr 15%;
+  grid-template-rows: 1fr 40px;
   grid-template-areas:
   "lista lista lista"
   "user  msg   enviar";
 `
 
 const ListaMensagens = styled.div`
-  border: 1px solid red;
+  padding: 20px;
   grid-area: lista;
 `
 
 const InputUser = styled.input`
-  border: 1px solid black;
+  border-radius: 5px;
+  margin-left: 10px;
+  border-style: none;
   padding-left: 5px;
   grid-area: user;
 `
 
 const InputMsg = styled.input`
-  border: 1px solid blue;
+  border-radius: 5px;
+  border-style: none;
   padding-left: 5px;
   grid-area: msg;
 `
 
 const BotaoEnviar = styled.button`
-  border: 1px solid green;
+  border-radius: 5px;
+  margin-right:10px;
+  border-style: none;
+  font-weight: bold;
   grid-area: enviar;
 `
 
@@ -80,10 +88,10 @@ class App extends React.Component {
 
     return (
       <MainLayout>
-      <ListaMensagens>{listaMensgens}</ListaMensagens>
-      <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
-      <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
-      <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
+        <ListaMensagens>{listaMensgens}</ListaMensagens>
+        <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario}/>
+        <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem}/>
+        <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
       </MainLayout>
     );
   }
