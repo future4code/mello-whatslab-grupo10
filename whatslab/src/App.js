@@ -56,6 +56,7 @@ class App extends React.Component {
 
   enviarMensagem = () => {
     const novaMensagem = {
+      key: Date.now(),
       nomeUsuario: this.state.valorInputUsuario,
       valorMensagem: this.state.valorInputMensagem,
     };
@@ -69,6 +70,11 @@ class App extends React.Component {
     });
   };
 
+  deletarMensagem = (key) => {
+    const novoMensagens = this.state.mensagens.filter( mensagem => mensagem.key !== key )
+    this.setState({mensagens: novoMensagens})
+  }
+
   onChangeInputUsuario = (event) => {
     this.setState({ valorInputUsuario: event.target.value });
   };
@@ -77,12 +83,20 @@ class App extends React.Component {
     this.setState({ valorInputMensagem: event.target.value });
   };
 
+  onKeyPressInputMensagem = (event) => {
+    if (event.key === "Enter" || (event.keyCode || event.which) === 13){
+      this.enviarMensagem();
+    }
+  };
+
   render(){
 
     const listaMensgens = this.state.mensagens.map(mensagem => {
       return <Mensagem
+                key={mensagem.key}
                 nomeUsuario={mensagem.nomeUsuario}
                 valorMensagem={mensagem.valorMensagem}
+                funcaoDeletar={()=>{this.deletarMensagem(mensagem.key)}}
               />
     })
 
