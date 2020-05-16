@@ -28,6 +28,7 @@ const ListaMensagens = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow: auto;
 `
 
 const InputUser = styled.input`
