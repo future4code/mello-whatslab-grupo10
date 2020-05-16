@@ -4,9 +4,7 @@ import "./Mensagem.css";
 
 const MensagemEsquerda = styled.div`
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0 10px;
+    margin: 10px 0 10px 0;
     padding: 10px;
     max-width: 40%;
     border-radius: 5px;
@@ -15,9 +13,7 @@ const MensagemEsquerda = styled.div`
 `
 const MensagemDireita = styled.div`
     background-color: #dcf8c6;
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0 10px;
+    margin: 10px 0 10px 0;
     padding: 10px;
     max-width: 40%;
     border-radius: 5px;
@@ -30,7 +26,6 @@ const NomeUsuario = styled.p`
     margin-bottom: 8px;
 `
 const MensagemUsuario = styled.p`
-    width:100%;
     word-wrap: break-word;
 `
 
