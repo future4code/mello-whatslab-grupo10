@@ -86,8 +86,10 @@ class App extends React.Component {
   };
 
   deletarMensagem = (key) => {
-    const novoMensagens = this.state.mensagens.filter( mensagem => mensagem.key !== key )
-    this.setState({mensagens: novoMensagens})
+    if(window.confirm('Deseja mesmo apagar a mensagem ?')){
+      const novoMensagens = this.state.mensagens.filter( mensagem => mensagem.key !== key )
+      this.setState({mensagens: novoMensagens})
+    }
   }
 
   onChangeInputUsuario = (event) => {
