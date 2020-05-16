@@ -6,7 +6,7 @@ import "./Mensagem.css";
 
 class Mensagem extends React.Component{
     render(){
-    return <p><b>{this.props.nomeUsuario}</b>: {this.props.valorMensagem}</p>
+    return <p onDoubleClick={this.props.funcaoDeletar}><b>{this.props.nomeUsuario}</b>: {this.props.valorMensagem}</p>
     }
 }
 
