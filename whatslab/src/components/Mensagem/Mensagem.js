@@ -23,26 +23,47 @@ const MensagemDireita = styled.div`
 
 const NomeUsuario = styled.p`
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 `
 const MensagemUsuario = styled.p`
     word-wrap: break-word;
+`
+const HoraMensagem = styled.div`
+    font-size: 10px;
+    margin-top: 3px;
+    display: flex;
+    justify-content: flex-end;
 `
 
 
 class Mensagem extends React.Component{
     render() {
+        function pad(numeroRelogio) {
+            if (numeroRelogio < 10) {
+                return "0" + numeroRelogio
+            } else {
+                return numeroRelogio
+            }
+        }
+
+        let data = new Date()
+        let horaMensagem = [data.getHours(), data.getMinutes()].map(pad).join(":")
+
         if (this.props.nomeUsuario === "eu") {
             return <MensagemDireita onDoubleClick={this.props.funcaoDeletar}>
                 <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
+                <HoraMensagem>{horaMensagem}</HoraMensagem>
             </MensagemDireita>
         } else {
             return <MensagemEsquerda onDoubleClick={this.props.funcaoDeletar}>
                 <NomeUsuario>{this.props.nomeUsuario}</NomeUsuario>
                 <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
+                <HoraMensagem>{horaMensagem}</HoraMensagem>
             </MensagemEsquerda>
         }            
     }
-}
+}    
+
 
 export default Mensagem
+
