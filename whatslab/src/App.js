@@ -92,12 +92,13 @@ class App extends React.Component {
       const novoMensagens = this.state.mensagens.filter(mensagem => mensagem.id !== id)
       this.setState({ mensagens: novoMensagens })
     }
-  }
+  };
 
   formatarHorario = (data) => {
+    const horas = data.getHours();
     const minutos = data.getMinutes();
-    return `${data.getHours()}:${(minutos < 10) ? '0' + minutos : minutos}`
-  }
+    return `${ horas > 12 ? (horas - 12) : horas }:${ minutos < 10 ? ('0' + minutos) : minutos } ${ horas > 12 ? 'PM' : 'AM'}`
+  };
 
   onChangeInputUsuario = (event) => {
     this.setState({ valorInputUsuario: event.target.value });
