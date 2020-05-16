@@ -36,6 +36,9 @@ const InputUser = styled.input`
   border-style: none;
   padding-left: 5px;
   grid-area: user;
+  &:focus {
+      outline: none;
+  }
 `
 
 const InputMsg = styled.input`
@@ -43,6 +46,9 @@ const InputMsg = styled.input`
   border-style: none;
   padding-left: 5px;
   grid-area: msg;
+  &:focus {
+      outline: none;
+  }
 `
 
 const BotaoEnviar = styled.button`
@@ -51,6 +57,9 @@ const BotaoEnviar = styled.button`
   border-style: none;
   font-weight: bold;
   grid-area: enviar;
+  &:focus {
+      outline: none;
+  }
 `
 
 class App extends React.Component {
