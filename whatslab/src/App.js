@@ -76,7 +76,7 @@ class App extends React.Component {
     if (event.key === "Enter" || (event.keyCode || event.which) === 13){
       this.enviarMensagem();
     }
-  }
+  };
 
   render(){
 
