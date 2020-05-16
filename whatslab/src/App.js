@@ -80,7 +80,6 @@ class App extends React.Component {
       
     this.setState({
       mensagens: novoMensagens,
-      valorInputUsuario: "",
       valorInputMensagem: "",
     });
   };
