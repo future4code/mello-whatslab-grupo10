@@ -58,6 +58,7 @@ const BotaoEnviar = styled.button`
   border-style: none;
   font-weight: bold;
   grid-area: enviar;
+  cursor: pointer;
   &:focus {
       outline: none;
   }
