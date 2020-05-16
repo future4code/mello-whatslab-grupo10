@@ -59,6 +59,11 @@ class App extends React.Component {
     });
   };
 
+  deletarMensagem = (key) => {
+    const novoMensagens = this.state.mensagens.filter( mensagem => mensagem.key !== key )
+    this.setState({mensagens: novoMensagens})
+  }
+
   onChangeInputUsuario = (event) => {
     this.setState({ valorInputUsuario: event.target.value });
   };
@@ -80,6 +85,7 @@ class App extends React.Component {
                 key={mensagem.key}
                 nomeUsuario={mensagem.nomeUsuario}
                 valorMensagem={mensagem.valorMensagem}
+                funcaoDeletar={()=>{this.deletarMensagem(mensagem.key)}}
               />
     })
 
