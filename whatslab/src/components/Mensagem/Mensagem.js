@@ -10,6 +10,7 @@ const MensagemEsquerda = styled.div`
     border-radius: 5px;
     box-shadow: 0 1px 1px rgb(0, 0, 0, 0.4);
     align-self: flex-start;
+    cursor: pointer;
 `
 const MensagemDireita = styled.div`
     background-color: #dcf8c6;
@@ -19,6 +20,7 @@ const MensagemDireita = styled.div`
     border-radius: 5px;
     box-shadow: 0 1px 1px rgb(0, 0, 0, 0.4);
     align-self: flex-end;
+    cursor: pointer;
 `
 
 const NomeUsuario = styled.p`
