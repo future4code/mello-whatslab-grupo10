@@ -123,12 +123,8 @@ class App extends React.Component {
     }
   };
 
-  scrollToBottom = () => {
-    this.fimDasMensagens.scrollIntoView({ behavior: "smooth" });
-  }
-  
   componentDidUpdate() {
-    this.scrollToBottom();
+    this.fimDasMensagens.scrollIntoView({ behavior: "smooth" });
   }
 
   render() {
