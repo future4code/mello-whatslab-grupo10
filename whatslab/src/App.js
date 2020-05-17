@@ -99,7 +99,7 @@ class App extends React.Component {
   formatarHorario = (data) => {
     const horas = data.getHours();
     const minutos = data.getMinutes();
-    return `${ horas > 12 ? (horas - 12) : horas }:${ minutos < 10 ? ('0' + minutos) : minutos } ${ horas > 12 ? 'PM' : 'AM'}`
+    return `${ horas > 12 ? (horas - 12) : horas }:${ minutos < 10 ? ('0' + minutos) : minutos } ${ horas > 11 ? 'PM' : 'AM'}`
   };
 
   onChangeInputUsuario = (event) => {
