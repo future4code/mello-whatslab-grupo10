@@ -24,12 +24,18 @@ const MainLayout = styled.div`
 
 const ListaMensagens = styled.div`
   padding: 20px;
-  grid-area: lista;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: auto;
+  min-height: 100%;
 `
+
+const Scroll = styled.div`
+  overflow: auto;
+  grid-area: lista;
+`
+
+const MsgEnd = styled.div``
 
 const InputUser = styled.input`
   border-radius: 5px;
@@ -87,6 +93,7 @@ class App extends React.Component {
       mensagens: novoMensagens,
       valorInputMensagem: "",
     });
+
   };
 
   deletarMensagem = (id) => {
@@ -116,6 +123,14 @@ class App extends React.Component {
     }
   };
 
+  scrollToBottom = () => {
+    this.fimDasMensagens.scrollIntoView({ behavior: "smooth" });
+  }
+  
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   render() {
     const listaMensagens = this.state.mensagens.map(mensagem => {
       return <Mensagem
@@ -129,7 +144,7 @@ class App extends React.Component {
 
     return (
       <MainLayout>
-        <ListaMensagens>{listaMensagens}</ListaMensagens>
+        <Scroll><ListaMensagens>{listaMensagens}</ListaMensagens><MsgEnd ref={(element) => { this.fimDasMensagens = element; }}></MsgEnd></Scroll>
         <InputUser placeholder='Usuário' value={this.state.valorInputUsuario} onChange={this.onChangeInputUsuario} />
         <InputMsg placeholder='Mensagem' value={this.state.valorInputMensagem} onChange={this.onChangeInputMensagem} onKeyPress={this.onKeyPressInputMensagem} />
         <BotaoEnviar onClick={this.enviarMensagem}>Enviar</BotaoEnviar>
