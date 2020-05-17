@@ -84,7 +84,7 @@ class App extends React.Component {
       id: data.getTime(),
       nomeUsuario: this.state.valorInputUsuario,
       valorMensagem: this.state.valorInputMensagem,
-      horario: `${this.formatarHorario(data)}`,
+      horario: this.formatarHorario(data),
     };
 
     const novoMensagens = [...this.state.mensagens, novaMensagem];
@@ -93,7 +93,6 @@ class App extends React.Component {
       mensagens: novoMensagens,
       valorInputMensagem: "",
     });
-
   };
 
   deletarMensagem = (id) => {
