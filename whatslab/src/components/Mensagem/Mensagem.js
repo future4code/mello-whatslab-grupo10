@@ -39,7 +39,7 @@ const HoraMensagem = styled.p`
 
 class Mensagem extends React.Component{
     render() {
-        if (this.props.nomeUsuario === "eu") {
+        if (this.props.nomeUsuario.toLowerCase() === "eu") {
             return <MensagemDireita onDoubleClick={this.props.funcaoDeletar}>
                         <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
                         <HoraMensagem>{this.props.horario}</HoraMensagem>
