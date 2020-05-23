@@ -23,12 +23,17 @@ const MensagemDireita = styled.div`
     cursor: pointer;
 `
 
+const IconeDeletar = styled.p`
+    display:inline;
+`
+
 const NomeUsuario = styled.p`
     font-weight: bold;
     margin-bottom: 5px;
 `
 const MensagemUsuario = styled.p`
     word-wrap: break-word;
+    display: inline;
 `
 const HoraMensagem = styled.p`
     font-size: 10px;
@@ -42,13 +47,14 @@ class Mensagem extends React.Component{
         if (this.props.nomeUsuario.toLowerCase() === "eu") {
             return <MensagemDireita onDoubleClick={this.props.funcaoDeletar}>
                         <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
-                        <HoraMensagem>{this.props.horario}</HoraMensagem>
+                        <HoraMensagem>{this.props.horario}<IconeDeletar onClick={this.props.funcaoDeletar}> ❌</IconeDeletar></HoraMensagem>
+                        
                    </MensagemDireita>
         } else {
             return <MensagemEsquerda onDoubleClick={this.props.funcaoDeletar}>
                         <NomeUsuario>{this.props.nomeUsuario}</NomeUsuario>
                         <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
-                        <HoraMensagem>{this.props.horario}</HoraMensagem>
+                        <HoraMensagem>{this.props.horario}<IconeDeletar onClick={this.props.funcaoDeletar}> ❌</IconeDeletar></HoraMensagem>
                    </MensagemEsquerda>
         }            
     }
