@@ -33,7 +33,6 @@ const NomeUsuario = styled.p`
 `
 const MensagemUsuario = styled.p`
     word-wrap: break-word;
-    display: inline;
 `
 const HoraMensagem = styled.p`
     font-size: 10px;
@@ -47,8 +46,7 @@ class Mensagem extends React.Component{
         if (this.props.nomeUsuario.toLowerCase() === "eu") {
             return <MensagemDireita onDoubleClick={this.props.funcaoDeletar}>
                         <MensagemUsuario>{this.props.valorMensagem}</MensagemUsuario>
-                        <HoraMensagem>{this.props.horario}<IconeDeletar onClick={this.props.funcaoDeletar}> ❌</IconeDeletar></HoraMensagem>
-                        
+                        <HoraMensagem>{this.props.horario}<IconeDeletar onClick={this.props.funcaoDeletar}> ❌</IconeDeletar></HoraMensagem>                        
                    </MensagemDireita>
         } else {
             return <MensagemEsquerda onDoubleClick={this.props.funcaoDeletar}>
